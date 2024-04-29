@@ -1,9 +1,9 @@
 import express from 'express';
-import getMonthlyPayments from './controllers/PaymentController/paymentController';
+import paymentsRouter from './routers/paymentsRouter';
 const app = express();
 const port = 4455;
 
-app.get('/api/payments', getMonthlyPayments);
+app.use('/payments', paymentsRouter);
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
