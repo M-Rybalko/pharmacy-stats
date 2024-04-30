@@ -4,11 +4,11 @@ import paymentParser from '../parsers/payments-parser/PaymentsParser';
 
 const paymentsService = () => {
   const payments2022 = fs.readFileSync(
-    './data/payments_on_contracts_pharmacy_2022.csv',
+    './src/data/payments_on_contracts_pharmacy_2022.csv',
     {encoding: 'utf8'}
   );
   const payments2023 = fs.readFileSync(
-    './data/payments_on_contracts_pharmacy_2023.csv',
+    './src/data/payments_on_contracts_pharmacy_2023.csv',
     {encoding: 'utf8'}
   );
   const response = new MonthlyPaymentsResponse();
