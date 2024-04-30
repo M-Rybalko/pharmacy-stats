@@ -40,7 +40,7 @@ const Slider: FC<SliderProps> = ({
     }
   };
   return (
-    <Box width="300px" margin="100px">
+    <Box width="400px" margin="100px">
       <SliderMUI
         min={min}
         max={max}
@@ -53,6 +53,7 @@ const Slider: FC<SliderProps> = ({
         valueLabelFormat={valuetext}
         disableSwap
         marks={marks}
+        size="medium"
       />
     </Box>
   );
