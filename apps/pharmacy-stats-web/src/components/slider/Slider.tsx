@@ -4,6 +4,8 @@ import {Box} from '@mui/material';
 import {months} from '@/constants/months';
 import {mark} from '@/components/slider/interfaces';
 
+import * as styles from './Slider.styles';
+
 interface SliderProps {
   minDistance: number;
   value: number[];
@@ -40,7 +42,7 @@ const Slider: FC<SliderProps> = ({
     }
   };
   return (
-    <Box width="400px" margin="100px">
+    <Box width="290px">
       <SliderMUI
         min={min}
         max={max}
@@ -54,6 +56,7 @@ const Slider: FC<SliderProps> = ({
         disableSwap
         marks={marks}
         size="medium"
+        sx={styles.slider}
       />
     </Box>
   );
