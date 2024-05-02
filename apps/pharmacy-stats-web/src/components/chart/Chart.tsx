@@ -2,8 +2,8 @@ import React, {FC, useEffect, useRef, useState} from 'react';
 import {PaymentStats} from '@/types/PaymentStats';
 import {calculateSizes} from '@/components/chart/utils';
 import Bar from '@/components/chart/components/bar/Bar';
-import {PaymentBarHeight} from "@/components/chart/types";
-import {months} from "@/constants/months";
+import {PaymentBarHeight} from '@/components/chart/types';
+import {months} from '@/constants/months';
 
 interface ChartProps {
   data: PaymentStats;

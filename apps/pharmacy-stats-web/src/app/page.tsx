@@ -4,7 +4,6 @@ import {FC, useEffect, useState} from 'react';
 import {Box, Typography} from '@mui/material';
 import {months} from '@/constants/months';
 import PaymentsAPI from '@/lib/api/payments/PaymentsAPI';
-import {AnnualPayments} from '@/lib/api/payments/interfaces';
 import {uniteMonths} from '@/utils/uniteMonths';
 import {PaymentStats} from '@/types/PaymentStats';
 import {sliceData} from '@/utils/sliceData';
