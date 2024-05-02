@@ -1,5 +1,5 @@
-import trimData from './utils';
-import {months} from './constants';
+import trimData from '../utils';
+import {months} from '../constants';
 import MonthlyPaymentsDTO from '../../dtos/MonthlyPaymentsDTO';
 const paymentParser = (csv: string) => {
   const trimmedCsv: string = trimData(csv);

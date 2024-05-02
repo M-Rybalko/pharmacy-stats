@@ -1,4 +1,4 @@
-import paymentsService from '../../services/payments.service';
+import paymentsService from '../services/payments.service';
 
 const getMonthlyPayments = async (req, res) => {
   const response = paymentsService();

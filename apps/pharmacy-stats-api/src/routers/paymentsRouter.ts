@@ -1,5 +1,5 @@
 import express from 'express';
-import getMonthlyPayments from '../controllers/PaymentsController/paymentsController';
+import getMonthlyPayments from '../controllers/paymentsController';
 
 const paymentsRouter = express.Router();
 
