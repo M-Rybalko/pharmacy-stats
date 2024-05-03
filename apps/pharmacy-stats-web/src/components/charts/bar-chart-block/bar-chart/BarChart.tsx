@@ -1,14 +1,14 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {PaymentStats} from '@/types/PaymentStats';
-import {calculateSizes} from '@/components/chart/utils';
-import Bar from '@/components/chart/components/bar/Bar';
-import {PaymentBarHeight} from '@/components/chart/types';
+import {calculateSizes} from './utils';
+import Bar from '@/components/charts/bar-chart-block/bar-chart/components/bar/Bar';
+import {PaymentBarHeight} from './types';
 import {months} from '@/constants/months';
 
 interface ChartProps {
   data: PaymentStats;
 }
-const Chart: FC<ChartProps> = ({data}) => {
+const BarChart: FC<ChartProps> = ({data}) => {
   const containerRef = useRef<SVGSVGElement>(null);
 
   const [containerWidth, setContainerWidth] = useState<number>(0);
@@ -74,4 +74,4 @@ const Chart: FC<ChartProps> = ({data}) => {
     </svg>
   );
 };
-export default Chart;
+export default BarChart;

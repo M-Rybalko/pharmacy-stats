@@ -4,60 +4,29 @@ import {FC, useEffect, useState} from 'react';
 import {Box, Typography} from '@mui/material';
 import {months} from '@/constants/months';
 import PaymentsAPI from '@/lib/api/payments/PaymentsAPI';
+import CompaniesAPI from '@/lib/api/companies/CompaniesAPI';
 import {uniteMonths} from '@/utils/uniteMonths';
 import {PaymentStats} from '@/types/PaymentStats';
 import {sliceData} from '@/utils/sliceData';
 import {marks} from '@/constants/sliderMarks';
-import Chart from '@/components/chart';
+import BarChart from '@/components/charts/bar-chart-block/bar-chart';
 
 import * as styles from './MainPage.styles';
+import BarChartBlock from "@/components/charts/bar-chart-block/BarChartBlock";
 
 const Home: FC = () => {
-  const [sliderValue, setSliderValue] = useState<number[]>([1, 24]);
-  const [data, setData] = useState<PaymentStats>();
-  const [displayed, setDisplayed] = useState<PaymentStats>();
-
-  const handlePayments = async () => {
-    const rawData = await PaymentsAPI.getAnnualPayments();
+  const handleCompanies = async () => {
+    const rawData = await CompaniesAPI.getCompanies();
     return uniteMonths(rawData);
   };
-  useEffect(() => {
-    handlePayments().then(res => {
-      setData(res);
-      setDisplayed(res);
-    });
-  }, []);
-  useEffect(() => {
-    if (data) {
-      const sliced = sliceData(data, sliderValue);
-      setDisplayed(sliced);
-    }
-  }, [sliderValue]);
-  if (!data) return <div>Loading...</div>;
-  if (!displayed) return <div>Loading...</div>;
 
-  const handleSliderValueChange = (newValue: number[]) => {
-    setSliderValue(newValue);
-  };
   return (
-    <Box sx={styles.barChartBlock}>
-      <Box sx={styles.barChartContainer}>
-        <Typography variant="h5" sx={styles.title}>
-          {`Статистика за період: ${months[sliderValue[0].toString()]} - ${
-            months[sliderValue[1].toString()]
-          }`}
-        </Typography>
-        <Slider
-          minDistance={1}
-          value={sliderValue}
-          marks={marks}
-          onChange={handleSliderValueChange}
-          min={1}
-          max={24}
-        />
-        <Chart data={displayed} />
+    <>
+      <Box sx={styles.barChartBlock}>
+        <BarChartBlock />
       </Box>
-    </Box>
+      <Box sx={styles.stackedChartBlock}></Box>
+    </>
   );
 };
 

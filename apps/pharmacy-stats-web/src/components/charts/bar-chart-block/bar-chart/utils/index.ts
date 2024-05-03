@@ -1,5 +1,5 @@
 import {PaymentStats} from '@/types/PaymentStats';
-import {PaymentBarHeight} from '@/components/chart/types';
+import {PaymentBarHeight} from '../types';
 
 const MAX_CHART_WIDTH = 0.7;
 const MAX_BAR_HEIGHT = 0.7;

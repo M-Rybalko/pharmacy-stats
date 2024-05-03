@@ -1,14 +1,11 @@
-import {AnnualPayments, MonthlyPayments} from '@/lib/api/payments/interfaces';
-import {PaymentStats} from '@/types/PaymentStats';
-
-export const uniteMonths = (data: AnnualPayments) => {
-  const unitedPayments: PaymentStats = {};
+export const uniteMonths = data => {
+  const unitedPayments = {};
   let monthNumber = 0;
   for (const year in data) {
-    const monthlyPayments: MonthlyPayments = data[year];
-    for (const month in monthlyPayments) {
+    const monthly = data[year];
+    for (const month in monthly) {
       monthNumber++;
-      unitedPayments[monthNumber.toString()] = monthlyPayments[month];
+      unitedPayments[monthNumber.toString()] = monthly[month];
     }
   }
   return unitedPayments;
