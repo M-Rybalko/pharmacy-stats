@@ -16,7 +16,6 @@ Install the dependencies:
 Now you have to manualy start both API and web applications
 
 ## API
-***
 
 in the separate terminal go to the API root:
 
@@ -33,7 +32,6 @@ Run the server:
 Now you're good to go!
 
 ## WEB
-***
 
 in the separate terminal go to the web root: 
 
