@@ -1,21 +1,13 @@
 import {SxProps, Theme} from '@mui/material';
 
-export const barChartBlock: SxProps<Theme> = {
+export const chartBlock: SxProps<Theme> = {
   display: 'flex',
-  justifyContent: 'center',
+  flexDirection: 'column',
   alignItems: 'center',
   width: '100vw',
-  height: '100vh',
-  backgroundColor: '#061e52',
-  paddingY: '20px',
-};
-
-export const stackedChartBlock: SxProps<Theme> = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100vw',
-  height: '100vh',
-  backgroundColor: '#00e1ff',
-  paddingY: '20px',
+  height: '200vh',
+  background:
+    'linear-gradient(0deg, rgba(82,67,255,1) 50%, rgba(0,185,255,1) 100%)',
+  paddingY: '50px',
+  gap: '50px',
 };

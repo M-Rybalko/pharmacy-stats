@@ -6,10 +6,10 @@ export const chartContainer: SxProps<Theme> = {
   alignItems: 'center',
   border: '4px solid white',
   borderRadius: '16px',
+  overflow: 'hidden',
   padding: '20px',
   width: '90%',
   height: '50%',
-  overflow: 'hidden',
   backgroundColor: 'black',
   color: 'white',
   boxShadow: '5px 5px 20px black',
@@ -18,5 +18,4 @@ export const chartContainer: SxProps<Theme> = {
 export const title: SxProps<Theme> = {
   marginBottom: '20px',
   textAlign: 'center',
-  fontWeight: 500,
 };

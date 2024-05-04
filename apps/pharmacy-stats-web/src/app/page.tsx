@@ -1,31 +1,27 @@
 'use client';
-import Slider from '@/components/slider';
-import {FC, useEffect, useState} from 'react';
-import {Box, Typography} from '@mui/material';
-import {months} from '@/constants/months';
-import PaymentsAPI from '@/lib/api/payments/PaymentsAPI';
-import CompaniesAPI from '@/lib/api/companies/CompaniesAPI';
-import {uniteMonths} from '@/utils/uniteMonths';
-import {PaymentStats} from '@/types/PaymentStats';
-import {sliceData} from '@/utils/sliceData';
-import {marks} from '@/constants/sliderMarks';
-import BarChart from '@/components/charts/bar-chart-block/bar-chart';
-
+import {FC} from 'react';
+import {Box, Typography, useMediaQuery} from '@mui/material';
+import BarChartBlock from '@/components/charts/bar-chart-block/BarChartBlock';
+import StackedChartBlock from '@/components/charts/stacked-chart-block/StackedChartBlock';
 import * as styles from './MainPage.styles';
-import BarChartBlock from "@/components/charts/bar-chart-block/BarChartBlock";
+import theme from '@/styles/theme';
 
 const Home: FC = () => {
-  const handleCompanies = async () => {
-    const rawData = await CompaniesAPI.getCompanies();
-    return uniteMonths(rawData);
-  };
-
+  const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
   return (
     <>
-      <Box sx={styles.barChartBlock}>
-        <BarChartBlock />
+      <Box sx={styles.chartBlock}>
+        <Typography
+          variant="h4"
+          color="white"
+          textAlign="center"
+          fontWeight={500}
+        >
+          Візуалізація відшкодувань вартості ліків за програмою “Доступні ліки”
+        </Typography>
+        <BarChartBlock isMobile={isMobile} />
+        <StackedChartBlock isMobile={isMobile} />
       </Box>
-      <Box sx={styles.stackedChartBlock}></Box>
     </>
   );
 };

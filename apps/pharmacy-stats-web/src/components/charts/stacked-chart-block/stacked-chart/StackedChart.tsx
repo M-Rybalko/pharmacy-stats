@@ -1,20 +1,18 @@
 import React, {FC, useEffect, useState} from 'react';
-import {PaymentStats} from '@/types/PaymentStats';
-import {calculateSizes} from './utils';
-import Bar from '@/components/charts/bar-chart-block/bar-chart/components/bar/Bar';
-import {PaymentBarHeight} from './types';
-import {months} from '@/constants/months';
+import {CompaniesStats} from '@/types/CompaniesStats';
+import {CompaniesBarHeight} from '@/components/charts/stacked-chart-block/stacked-chart/types';
+import {calculateCompanySizes} from '@/components/charts/stacked-chart-block/stacked-chart/utils';
+import StackedBar from '@/components/charts/stacked-chart-block/stacked-chart/components/stacked-bar/StackedBar';
 import {useAnimate} from 'framer-motion';
 
 interface ChartProps {
-  data: PaymentStats;
+  data: CompaniesStats;
   slider: number[];
 }
-const BarChart: FC<ChartProps> = ({data, slider}) => {
-  const [scope, animate] = useAnimate();
-
+const StackedChart: FC<ChartProps> = ({data, slider}) => {
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const [containerHeight, setContainerHeight] = useState<number>(0);
+  const [scope, animate] = useAnimate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,7 +38,7 @@ const BarChart: FC<ChartProps> = ({data, slider}) => {
     animate(scope.current, {y: [200, 0], opacity: [0, 1]}, {duration: 0.5});
   }, [slider]);
 
-  const bars: PaymentBarHeight = calculateSizes(
+  const bars: CompaniesBarHeight = calculateCompanySizes(
     data,
     containerHeight,
     containerWidth
@@ -52,8 +50,8 @@ const BarChart: FC<ChartProps> = ({data, slider}) => {
 
   let highest = 0;
   bars.map(bar => {
-    if (bar.price > highest) {
-      highest = bar.price;
+    if (bar.total > highest) {
+      highest = bar.total;
     }
   });
   highest = highest / 0.85 / 1000000;
@@ -67,7 +65,6 @@ const BarChart: FC<ChartProps> = ({data, slider}) => {
       width="100%"
       height="100%"
       ref={scope}
-      className="chart"
     >
       {measures.map((measure, index) => (
         <rect
@@ -83,23 +80,19 @@ const BarChart: FC<ChartProps> = ({data, slider}) => {
         const barX = x;
         x += bar.width + margin;
         y = containerHeight - bar.height;
+        bar.companies.sort((a, b) => a.price - b.price);
         return (
-          <Bar
+          <StackedBar
             key={index}
             x={barX}
             y={y}
             width={bar.width}
-            height={bar.height}
-            tooltip={
-              <>
-                Місяць: {months[bar.month]} <br />
-                Сума: {bar.price} грн.
-              </>
-            }
+            month={bar.month}
+            companies={bar.companies}
           />
         );
       })}
     </svg>
   );
 };
-export default BarChart;
+export default StackedChart;

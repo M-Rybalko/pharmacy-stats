@@ -40,7 +40,14 @@ const Bar: FC<BarProps> = ({x, y, width, height, tooltip}) => {
           tooltip: {sx: {fontSize: '16px'}},
         }}
       >
-        <rect x={x} y={y} width={width} height={height} fill="url(#fill)" />
+        <rect
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          fill="url(#fill)"
+          className="bar"
+        />
       </Tooltip>
     </>
   );

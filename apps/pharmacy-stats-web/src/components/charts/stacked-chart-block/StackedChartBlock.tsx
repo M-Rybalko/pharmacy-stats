@@ -1,31 +1,29 @@
 import React, {FC, useEffect, useState} from 'react';
+import {uniteMonths} from '@/utils/uniteMonths';
+import {sliceData} from '@/utils/sliceData';
 import {Box, Typography} from '@mui/material';
+import * as styles from '@/components/charts/stacked-chart-block/StackedChartBlock.styles';
 import {months} from '@/constants/months';
 import Slider from '@/components/slider';
 import {marks} from '@/constants/sliderMarks';
-import BarChart from '@/components/charts/bar-chart-block/bar-chart';
-import {PaymentStats} from '@/types/PaymentStats';
-import PaymentsAPI from '@/lib/api/payments/PaymentsAPI';
-import {uniteMonths} from '@/utils/uniteMonths';
-import {sliceData} from '@/utils/sliceData';
+import CompaniesAPI from '@/lib/api/companies/CompaniesAPI';
+import {CompaniesStats} from '@/types/CompaniesStats';
+import StackedChart from '@/components/charts/stacked-chart-block/stacked-chart';
 
-import * as styles from './BarChartBlock.styles';
-
-interface BarChartBlockProps {
+interface StackedChartBlockProps {
   isMobile: boolean;
 }
-const BarChartBlock: FC<BarChartBlockProps> = ({isMobile}) => {
+const StackedChartBlock: FC<StackedChartBlockProps> = ({isMobile}) => {
   const [sliderValue, setSliderValue] = useState<number[]>([1, 24]);
-  const [data, setData] = useState<PaymentStats>();
-  const [displayed, setDisplayed] = useState<PaymentStats>();
-
-  const handlePayments = async () => {
-    const rawData = await PaymentsAPI.getAnnualPayments();
+  const [data, setData] = useState<CompaniesStats>();
+  const [displayed, setDisplayed] = useState<CompaniesStats>();
+  const handleCompanies = async () => {
+    const rawData = await CompaniesAPI.getCompanies();
     return uniteMonths(rawData);
   };
 
   useEffect(() => {
-    handlePayments().then(res => {
+    handleCompanies().then(res => {
       setData(res);
       setDisplayed(res);
     });
@@ -36,7 +34,6 @@ const BarChartBlock: FC<BarChartBlockProps> = ({isMobile}) => {
       setDisplayed(sliced);
     }
   }, [sliderValue]);
-
   if (!data) return <Box sx={styles.chartContainer}>Loading...</Box>;
   if (!displayed) return <Box sx={styles.chartContainer}>Loading...</Box>;
 
@@ -59,16 +56,16 @@ const BarChartBlock: FC<BarChartBlockProps> = ({isMobile}) => {
         <Slider
           minDistance={1}
           value={sliderValue}
-          isMobile={isMobile}
           marks={marks}
+          isMobile={isMobile}
           onChange={handleSliderValueChange}
           min={1}
           max={24}
         />
-        <BarChart data={displayed} slider={sliderValue} />
+        <StackedChart data={displayed} slider={sliderValue} />
       </Box>
     </>
   );
 };
 
-export default BarChartBlock;
+export default StackedChartBlock;

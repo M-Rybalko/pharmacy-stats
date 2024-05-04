@@ -2,7 +2,7 @@ import {PaymentStats} from '@/types/PaymentStats';
 import {PaymentBarHeight} from '../types';
 
 const MAX_CHART_WIDTH = 0.7;
-const MAX_BAR_HEIGHT = 0.7;
+const MAX_BAR_HEIGHT = 0.9;
 
 export const calculateSizes = (
   data: PaymentStats,
@@ -10,7 +10,6 @@ export const calculateSizes = (
   fullWidth: number
 ) => {
   const width = (fullWidth / Object.keys(data).length) * MAX_CHART_WIDTH;
-  console.log(width);
   const heights: PaymentBarHeight = [];
   let highest = 0;
   for (const stat of Object.values(data)) {

@@ -12,6 +12,7 @@ interface SliderProps {
   marks: mark[];
   min: number;
   max: number;
+  isMobile: boolean;
   onChange: (value: number[]) => void;
 }
 const Slider: FC<SliderProps> = ({
@@ -20,6 +21,7 @@ const Slider: FC<SliderProps> = ({
   marks,
   min,
   max,
+  isMobile,
   onChange = () => {},
 }) => {
   const valuetext = (value: number) => {
@@ -42,7 +44,7 @@ const Slider: FC<SliderProps> = ({
     }
   };
   return (
-    <Box width="290px">
+    <Box width={isMobile ? '100%' : '50%'}>
       <SliderMUI
         min={min}
         max={max}
@@ -56,7 +58,7 @@ const Slider: FC<SliderProps> = ({
         disableSwap
         marks={marks}
         size="medium"
-        sx={styles.slider}
+        sx={styles.slider(isMobile)}
       />
     </Box>
   );

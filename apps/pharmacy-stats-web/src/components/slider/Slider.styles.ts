@@ -1,9 +1,12 @@
 import {SxProps, Theme} from '@mui/material';
 
-export const slider: SxProps<Theme> = {
+export const slider = (isMobile: boolean): SxProps<Theme> => ({
   '& .MuiSlider-markLabel': {
     color: 'white',
-    fontSize: '15px',
+    fontSize: '20px',
+    ...(isMobile && {
+      fontSize: '15px',
+    }),
   },
   color: 'white',
   '& .MuiSlider-mark': {
@@ -21,4 +24,4 @@ export const slider: SxProps<Theme> = {
       boxShadow: 'none',
     },
   },
-};
+});
