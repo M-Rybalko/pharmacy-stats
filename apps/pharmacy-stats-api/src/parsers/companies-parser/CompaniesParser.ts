@@ -28,7 +28,7 @@ const paymentParser = (csv: string) => {
       companies.add(record[companyIndex]);
       monthlyStat.total += +record[paymentIndex];
     }
-    monthlyStat.total.toFixed(2);
+    monthlyStat.total = +monthlyStat.total.toFixed(2);
     for (const company of companies) {
       const current: CompanyStat = {name: company, payment: 0};
       const companyPayments = curMonth.filter(
