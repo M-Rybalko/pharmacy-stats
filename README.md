@@ -21,10 +21,6 @@ in the separate terminal go to the API root:
 
     cd apps/pharmacy-stats-api
 
-Install the dependencies:
-
-    npm install
-
 Run the server:
 
     npm run dev
@@ -37,15 +33,17 @@ in the separate terminal go to the web root:
 
     cd apps/pharmacy-stats-web
 
-Install the dependencies:
-
-    npm install
-
-Run the server:
+Run the app:
 
     npm run dev
 
 Now you're good to go!
+
+***
+
+## Licence
+
+Distributed under the MIT License. See LICENSE for more information.
 
 ***
 
